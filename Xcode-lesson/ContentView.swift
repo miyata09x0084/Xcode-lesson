@@ -10,22 +10,25 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
-            Ellipse()
-                .stroke(lineWidth: 4)
-                .foregroundColor(/*@START_MENU_TOKEN@*/.pink/*@END_MENU_TOKEN@*/)
-                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 300)
-            Ellipse()
-                .stroke(lineWidth: 4)
-                .foregroundColor(/*@START_MENU_TOKEN@*/.purple/*@END_MENU_TOKEN@*/)
-                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 300)
-                .rotationEffect(.degrees(30), anchor: .bottom)
-            Ellipse()
-                .stroke(lineWidth: 4)
-                .foregroundColor(/*@START_MENU_TOKEN@*/.green/*@END_MENU_TOKEN@*/)
-                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 300)
-                .rotationEffect(.degrees(-30), anchor: .bottom)
+            Image("39424954871_e3afef0013_o")
+                .resizable()
+                .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                .offset(x: -70, y: 0)
+                .frame(width: 250, height: 400)
+                .clipped()
+            Text("ほととぎす\n鳴きつるほうをながむれば\nただ有明の月ぞ残れる\n")
+                .font(.title)
+                .fontWeight(.light)
+                .foregroundColor(Color.white)
+                .padding()
+                .offset(x: 0, y: -5)
+                .frame(width: 250, height: 400)
+                }
+        .rotation3DEffect(
+            .degrees(45), axis: (x: 1, y: 0, z: 0)
+            )
+        
         }
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {
