@@ -9,16 +9,27 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("春はあけぼの")
-            Text("夏は夜")
-                .foregroundColor(.red)
-            Text("秋は夕暮れ")
-            Text("冬はつとめて")
+        VStack {
+            VStack(alignment: .trailing) {
+                Text("知性の自転車")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                Text("Bicycle for the Mind")
+                    .italic()
+                    .offset(x: -10, y:0)
+            }
+            .padding(.top, 80)
+            VStack(alignment: .trailing) {
+                Text("憐みは恋の始まり")
+                    .font(.largeTitle)
+                    .fontWeight(.medium)
+                Text("Pity is akin to love")
+                    .italic()
+                    .offset(x: -10, y:0)
+            }
+            .padding(.top, 80)
+            Spacer()
         }
-        .frame(width: 250.0, height: 300.0)
-        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-        .font(.system(size: 40))
     }
 }
 
