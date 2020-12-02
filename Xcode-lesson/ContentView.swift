@@ -9,19 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack() {
-            Image("39424954871_e3afef0013_o")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .scaleEffect(1.8)
-                .offset(x: -70, y: -30)
-                .frame(width: 300, height: 200)
-                .clipped()
-                .overlay(            Text("Hello World")
-                                        .font(.largeTitle)
-                                        .fontWeight(.medium)
-                                        .foregroundColor(Color.white)
-                                        .multilineTextAlignment(.center))
+        ZStack {
+            Ellipse()
+                .stroke(lineWidth: 4)
+                .foregroundColor(/*@START_MENU_TOKEN@*/.pink/*@END_MENU_TOKEN@*/)
+                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 300)
+            Ellipse()
+                .stroke(lineWidth: 4)
+                .foregroundColor(/*@START_MENU_TOKEN@*/.purple/*@END_MENU_TOKEN@*/)
+                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 300)
+                .rotationEffect(.degrees(30), anchor: .bottom)
+            Ellipse()
+                .stroke(lineWidth: 4)
+                .foregroundColor(/*@START_MENU_TOKEN@*/.green/*@END_MENU_TOKEN@*/)
+                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 300)
+                .rotationEffect(.degrees(-30), anchor: .bottom)
         }
     }
 }
