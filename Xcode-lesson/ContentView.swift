@@ -9,33 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        HStack {
-            Flower()
-            Hello()
-                .font(.system(size: 40))
-                .padding()
-            Flower()
+        List {
+            Text("Content 1")
+            Text("Content 2")
+            Text("Content 3")
+            Text("Content 4")
+            Text("Content 5")
+            Text("Content 6")
         }
-        .frame(height: 100)
-        .padding()
-    }
-}
-
-
-struct Hello: View {
-    var body: some View {
-        Text("Hello")
-            .font(.largeTitle)
-            .fontWeight(.thin)
-            .foregroundColor(/*@START_MENU_TOKEN@*/.pink/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct Flower: View {
-    var body: some View {
-        Image("39424954871_e3afef0013_o")
-          .resizable()
-            .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
     }
 }
 
