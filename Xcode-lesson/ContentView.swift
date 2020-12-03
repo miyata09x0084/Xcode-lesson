@@ -8,26 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var num:Int = 0
+    @State var iLike = true
     
     var body: some View {
         VStack {
-            Button(action: {
-                self.num = Int.random(in: 0...100)
-                print(num)
-            }) {
-                Text("Random Button")
+            Toggle(isOn: $iLike) {
+                Text("Like or Not")
                     .font(.largeTitle)
-                    .foregroundColor(Color.white)
-                    .multilineTextAlignment(.center)
-                    .frame(width: 280.0, height: 60.0)
-                    .background(Color.blue)
-                    .cornerRadius(15, antialiased: true)
-                
             }
-            Text("\(num)")
-                .font(.largeTitle)
-                .padding()
+            .fixedSize()
+            .padding(50)
+            
+            if iLike {
+                Text("Good")
+                    .font(.system(size: 80))
+                    .foregroundColor(/*@START_MENU_TOKEN@*/.red/*@END_MENU_TOKEN@*/)
+            } else {
+                Text("Bad")
+                    .font(.system(size: 80))
+                    .foregroundColor(.gray)
+            }
         }
     }
 }
