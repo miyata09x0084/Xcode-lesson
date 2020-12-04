@@ -8,27 +8,36 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var iLike = true
+    @State var kosu:Int = 0
+    let tanka = 240
+    let tax = 0.1
     
     var body: some View {
-        VStack {
-            Toggle(isOn: $iLike) {
-                Text("Like or Not")
-                    .font(.largeTitle)
-            }
-            .fixedSize()
-            .padding(50)
+        VStack(alignment: .leading, spacing: 20) {
+            Text("5個づつ30個まで、1個\(self.tanka)円")
+                .font(.headline)
+            Stepper(
+                onIncrement: {
+                    self.kosu += 5
+                    self.kosu = min(self.kosu, 30)
+                },
+                onDecrement: {
+                    self.kosu -= 5
+                    self.kosu = max(self.kosu, 0)
+                },
+                label: {Text("個数: \(self.kosu)")}
+            ).frame(width: 200)
             
-            if iLike {
-                Text("Good")
-                    .font(.system(size: 80))
-                    .foregroundColor(/*@START_MENU_TOKEN@*/.red/*@END_MENU_TOKEN@*/)
-            } else {
-                Text("Bad")
-                    .font(.system(size: 80))
-                    .foregroundColor(.gray)
+                Text("料金: \(calc(self.kosu)) 円[税込]")
+                    .underline()
+            
             }
         }
+        
+    func calc(_ num:Int) -> Int {
+        let price = self.tanka * num
+        let result = Double(price) * (1 + self.tax)
+        return Int(result)
     }
 }
 
