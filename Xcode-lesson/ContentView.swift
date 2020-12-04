@@ -8,40 +8,44 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    @State var R:Double = 0
-    @State var G:Double = 0
-    @State var B:Double = 0
+    @State var selectedSize = 0
+    @State var selectedColor = 0
+    let sizes = ["XS","S","M","L","LL",]
+    let colors = ["Red","Green","Blue","Yellow","Pink","White"]
     
     var body: some View {
-        VStack(alignment: .center) {
-            Circle()
-                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
-                .padding()
-                .foregroundColor(
-                    Color(red: R/255, green: G/255, blue: B/255)
-                )
+        VStack {
             HStack {
-                Circle()
-                    .foregroundColor(.red)
-                    .frame(width: 20, height: 20)
-                Text(String(Int(R))).frame(width: 40)
-                Slider(value: $R, in: 0...255).frame(width: 200)
+                Picker(selection: $selectedSize, label: Text("")) {
+                    ForEach(0..<sizes.count) { index in Text(self.sizes[index]).tag(index)
+                    }
+                }
+                .frame(width: 200)
+                
+                Picker(selection: $selectedColor, label: Text("")) {
+                    ForEach(0..<colors.count) { index in Text(self.colors[index]).tag(index)
+                    }
+                }
+                .frame(width: 200)
+                .onAppear(perform: {
+                    self.selectedColor = self.colors.count/2
+                })
             }
+            
             HStack {
-                Circle()
-                    .foregroundColor(.green)
-                    .frame(width: 20, height: 20)
-                Text(String(Int(G))).frame(width: 40)
-                Slider(value: $G, in: 0...255).frame(width: 200)
-            }
-            HStack {
-                Circle()
-                    .foregroundColor(.blue)
-                    .frame(width: 20, height: 20)
-                Text(String(Int(B))).frame(width: 40)
-                Slider(value: $B, in: 0...255).frame(width: 200)
-            }
+                Text("size: \(sizes[selectedSize])")
+                    .padding(.horizontal, 40)
+                Text("size: \(colors[selectedColor])")
+                    .padding(.horizontal, 30)
+                }
+            .foregroundColor(/*@START_MENU_TOKEN@*/.white/*@END_MENU_TOKEN@*/)
+            .font(/*@START_MENU_TOKEN@*/.headline/*@END_MENU_TOKEN@*/)
+            .background(
+                RoundedRectangle(cornerRadius: 20)
+                    .frame(width: 300, height: 40)
+                    .foregroundColor(/*@START_MENU_TOKEN@*/.gray/*@END_MENU_TOKEN@*/)
+            )
+            
         }
     }
 }
