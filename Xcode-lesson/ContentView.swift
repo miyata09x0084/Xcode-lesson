@@ -8,41 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var seletedColor = 0
-    let colorViews = [Color.red, Color.green, Color.blue]
+    @State var theDate = Date()
+    @Environment(\.locale) var locale:Locale
     
-    var body: some View {
-        VStack {
-            Picker(selection: $seletedColor, label: Text("Color")) {
-                Text("Red").tag(0)
-                Text("Green").tag(1)
-                Text("Blue").tag(2)
-            }
-            .pickerStyle(SegmentedPickerStyle())
-            
-            symbolImage(num: seletedColor)
-                .resizable()
-                .foregroundColor(colorViews[seletedColor])
-                .frame(width: 100, height: 100)
-                .padding()
-                
-        }
-        
-        
-        
+    var dateformate: DateFormatter {
+        let df = DateFormatter()
+        df.locale = Locale(identifier: "ja_JP")
+        df.dateStyle = .full
+        df.timeStyle = .short
+        return df
     }
-    
-    func symbolImage(num:Int) -> Image {
-        switch num {
-        case 0:
-            return Image(systemName: "r.circle")
-        case 1:
-            return Image(systemName: "g.circle")
-        case 2:
-            return Image(systemName: "b.circle")
-        default :
-            return Image(systemName: "r.circle")
-        }
+
+    var body: some View {
+        Form {
+            Text(dateformate.string(from: theDate)).font(.headline)
+            DatePicker(selection: $theDate,
+                       displayedComponents: .date,
+                       label: { Text("日時") })
+                .environment(\.locale, Locale(identifier: "ja_JP"))
+            DatePicker(selection: $theDate,
+                       displayedComponents: .hourAndMinute,
+                       label: { Text("日時") })
+                .environment(\.locale, Locale(identifier: "ja_JP"))
+        }.padding()
     }
 }
 
