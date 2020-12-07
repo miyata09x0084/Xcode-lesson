@@ -8,27 +8,30 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var isError: Bool = false
+    @State var isSheet: Bool = false
 
     var body: some View {
         Button(action: {
-                self.isError = true
+            self.isSheet = true
         }) {
-        Text("Alertテスト")
-        }.alert(isPresented: $isError, content: {
-        Alert(
-            title: Text("タイトル"),
-            message:Text("メッセージ文"),
-            primaryButton: .destructive(Text("削除する"),action:{}),
-            secondaryButton:
-                .cancel(Text("キャンセル"), action: {}))
-        })
+            Text("削除")
+        .foregroundColor(.white)
+        .background(Capsule()
+                        .foregroundColor(.red)
+                        .frame(width: 100, height: 30))
+        }.actionSheet(isPresented: $isSheet) {
+            ActionSheet(
+                title: Text("削除しますか"),
+                buttons: [
+                    .destructive(Text("削除"), action: {}),
+                    .cancel(Text("キャンセル"), action: {})
+                ])
+        }
     }
 }
 
-
-func okAction() {
-    print("OKボタンが選ばれた")
+func deleteProcess() {
+    print("削除しました")
 }
 
 struct ContentView_Previews: PreviewProvider {
