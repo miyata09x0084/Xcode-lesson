@@ -8,30 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var isSheet: Bool = false
+    @State var isModal:Bool = false
+    @State var counter:Int = 0
 
     var body: some View {
         Button(action: {
-            self.isSheet = true
+            self.isModal = true
         }) {
-            Text("削除")
-        .foregroundColor(.white)
-        .background(Capsule()
-                        .foregroundColor(.red)
-                        .frame(width: 100, height: 30))
-        }.actionSheet(isPresented: $isSheet) {
-            ActionSheet(
-                title: Text("削除しますか"),
-                buttons: [
-                    .destructive(Text("削除"), action: {}),
-                    .cancel(Text("キャンセル"), action: {})
-                ])
+            Text("Sheetテスト")
         }
+        .sheet(isPresented: $isModal, onDismiss:{self.countUp()}) {
+            SomeView()
+        }
+        .disabled(counter >= 3)
+        Text("回数:\(counter)")
+            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+            .padding()
+        
     }
-}
-
-func deleteProcess() {
-    print("削除しました")
+    func countUp() {
+        self.counter += 1
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
