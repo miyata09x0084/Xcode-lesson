@@ -17,11 +17,12 @@ struct PhotoView: View {
                 .resizable()
                 .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
                 .frame(width: w, height: w)
-                .clipped()
+                .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                .overlay(Circle().stroke(Color.white, lineWidth: 4))
+                .shadow(radius: 10)
             Text(photo.title).padding()
         }
         .padding()
-        .background(Color(red: 0.9, green: 0.9, blue: 0.7))
         .cornerRadius(8)
     }
 }

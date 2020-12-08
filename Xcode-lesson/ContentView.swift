@@ -10,10 +10,10 @@ import SwiftUI
 struct ContentView: View {
 
     var body: some View {
-        ScrollView(.horizontal) {
+        ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                ForEach(0..<10) { num in
-                    Page(str: String(num))
+                ForEach(photoArray) { photoData in
+                    PhotoView(photo:photoData)
                 }
             }
         }
