@@ -7,23 +7,27 @@
 
 import SwiftUI
 
-struct PhotoRaw: View {
+struct PhotoView: View {
     var photo:PhotoData
+    let w:CGFloat = UIScreen.main.bounds.width - 100
     
     var body: some View {
-        HStack {
+        VStack {
             Image(photo.imageName)
                 .resizable()
-                .frame(width: 80, height: 80)
-            Text(photo.title)
-            Spacer()
+                .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                .frame(width: w, height: w)
+                .clipped()
+            Text(photo.title).padding()
         }
+        .padding()
+        .background(Color(red: 0.9, green: 0.9, blue: 0.7))
+        .cornerRadius(8)
     }
 }
 
 struct RawView_Previews: PreviewProvider {
     static var previews: some View {
-        PhotoRaw(photo: photoArray[0])
-            .previewLayout(.fixed(width: 300, height: 80))
+        PhotoView(photo:photoArray[0])
     }
 }
