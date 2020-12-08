@@ -10,8 +10,8 @@ import SwiftUI
 struct ContentView: View {
 
     var body: some View {
-        ScrollView{
-            VStack{
+        ScrollView(.horizontal) {
+            HStack {
                 ForEach(0..<10) { num in
                     Page(str: String(num))
                 }
@@ -21,7 +21,7 @@ struct ContentView: View {
 }
 
 struct Page: View {
-    let w:CGFloat = UIScreen.main.bounds.width-40
+    let w:CGFloat = UIScreen.main.bounds.width * 3/5
     let h:CGFloat = 200
     let str:String
     
